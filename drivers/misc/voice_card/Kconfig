@@ -1,0 +1,11 @@
+menu "AC108 support"
+
+config SND_SOC_AC108
+       tristate "ac 108"
+       #depends on SND_SOC_SEEED_VOICECARD 
+       default y
+
+#config SND_SOC_SEEED_VOICECARD
+#       tristate "seeed"
+#       default n
+endmenu

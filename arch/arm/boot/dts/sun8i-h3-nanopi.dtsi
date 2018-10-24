@@ -146,24 +146,7 @@
 		status = "disabled";
 	};
 
-	sound_i2s {
-		compatible = "simple-audio-card";
-		simple-audio-card,name = "I2S-master";
-		simple-audio-card,mclk-fs = <256>;
-		simple-audio-card,format = "i2s";
-		status = "okay";
-
-		simple-audio-card,cpu {
-			sound-dai = <&i2s0>;
-		};
-
-		simple-audio-card,codec {
-			sound-dai = <&pcm5102a>;
-		};
-	};
-
 };
-
 &cpu0 {
 	operating-points = <
 		1008000	1300000
@@ -435,9 +418,6 @@
 	};
 };
 
-&sound_hdmi {
-	status = "okay";
-};
 
 &tcon0 {
 	status = "okay";

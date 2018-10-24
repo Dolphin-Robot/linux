@@ -245,9 +245,6 @@
 	status = "okay";
 };
 
-&sound_hdmi {
-	status = "okay";
-};
 
 &tcon0 {
 	status = "okay";

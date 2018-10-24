@@ -93,6 +93,25 @@
 		regulator-max-microvolt = <1500000>;
 		vin-supply = <&reg_vcc3v3>;
 	};
+
+        seeed-voice-card {
+                        compatible = "simple-audio-card";
+                        simple-audio-card,format = "i2s";
+                        simple-audio-card,name = "seeed-4mic-voicecard";
+                        status = "okay";
+                        simple-audio-card,bitclock-master = <&cpu_dai>;
+                        simple-audio-card,frame-master = <&cpu_dai>;
+                        simple-audio-card,mclk-fs = <256>;
+
+                        cpu_dai: simple-audio-card,cpu {
+                                sound-dai = <&i2s0>;
+                        };
+
+                        codec_dai: simple-audio-card,codec {
+                          sound-dai = <&ac108_a>;
+                          clocks =  <&ac108_mclk>;
+                    };
+                };
 };
 
 &pio {
@@ -197,4 +216,24 @@
 
 &i2c2_pins {
    bias-pull-up;
+};
+
+&i2c0 {
+  status = "okay";
+
+  ac108_a: ac108@3b {
+                     compatible = "x-power,ac108_0";
+                     reg = <0x3b>;
+                     #sound-dai-cells = <0>;
+                     data-protocol = <1>;
+                    };
+};
+
+&i2c0_pins {
+   bias-pull-up;
+};
+
+&i2s0 {
+   #sound-dai-cells = <0>;
+   status = "okay";
 };

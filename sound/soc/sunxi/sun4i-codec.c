@@ -1617,6 +1617,7 @@ static int sun4i_codec_probe(struct platform_device *pdev)
 		}
 	}
 
+	
 	/* DMA configuration for TX FIFO */
 	scodec->playback_dma_data.addr = res->start + quirks->reg_dac_txdata;
 	scodec->playback_dma_data.maxburst = 8;
@@ -1627,6 +1628,8 @@ static int sun4i_codec_probe(struct platform_device *pdev)
 	scodec->capture_dma_data.maxburst = 8;
 	scodec->capture_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
 
+       printk(KERN_ERR "sun4i_codec_probe: scodec->capture_dma_data.addr_width:%u\n",scodec->capture_dma_data.addr_width);
+	   
 	ret = snd_soc_register_codec(&pdev->dev, quirks->codec,
 				     &sun4i_codec_dai, 1);
 	if (ret) {
