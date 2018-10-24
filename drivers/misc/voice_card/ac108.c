@@ -1046,14 +1046,18 @@ static int ac108_set_fmt(struct snd_soc_dai *dai, unsigned int fmt) {
 	 * normal mode for the last half cycle of BCLK in the slot ?
 	 * turn to hi-z state (TDM) when not transferring slot ?
 	 */
+// 	ac108_multi_chips_update_bits(I2S_FMT_CTRL1, 0x01 << ENCD_SEL | 0x03 << MODE_SEL | 0x01 << TX2_OFFSET |
+// 								  0x01 << TX1_OFFSET | 0x01 << TX_SLOT_HIZ | 0x01 << TX_STATE,
+// 								  ac108->data_protocol << ENCD_SEL 	|
+// 								  ac108->i2s_mode << MODE_SEL 		|
+// 								  tx_offset << TX2_OFFSET 			|
+// 								  tx_offset << TX1_OFFSET 			|
+// 								  0x00 << TX_SLOT_HIZ 				|
+// 								  0x01 << TX_STATE, ac108);
+	
 	ac108_multi_chips_update_bits(I2S_FMT_CTRL1, 0x01 << ENCD_SEL | 0x03 << MODE_SEL | 0x01 << TX2_OFFSET |
 								  0x01 << TX1_OFFSET | 0x01 << TX_SLOT_HIZ | 0x01 << TX_STATE,
-								  ac108->data_protocol << ENCD_SEL 	|
-								  ac108->i2s_mode << MODE_SEL 		|
-								  tx_offset << TX2_OFFSET 			|
-								  tx_offset << TX1_OFFSET 			|
-								  0x00 << TX_SLOT_HIZ 				|
-								  0x01 << TX_STATE, ac108);
+								  0x50, ac108);
 
 	/**
 	 * 0x60: 
